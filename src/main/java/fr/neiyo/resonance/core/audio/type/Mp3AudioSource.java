@@ -107,7 +107,6 @@ public final class Mp3AudioSource implements AudioSource {
             double fraction = srcPos - srcIndex;
 
             if (srcIndex + 1 < input.length) {
-                // Interpolation linéaire entre deux samples
                 output[i] = (short) (input[srcIndex] * (1.0 - fraction) + input[srcIndex + 1] * fraction);
             } else if (srcIndex < input.length) {
                 output[i] = input[srcIndex];
