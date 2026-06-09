@@ -12,15 +12,79 @@ A proof-of-concept audio streaming system for Hytale servers that leverages the 
 🎚️ **Simple API** - Intuitive methods for creating and managing audio sessions  
 ⚡ **Real-time encoding** - Opus codec at 48 kHz with 20ms frames (64 kbps)
 
+## Installation
+
+### Gradle (Kotlin DSL)
+
+Add JitPack repository:
+```kotlin
+repositories {
+    maven("https://jitpack.io")
+}
+```
+
+Add the dependency:
+```kotlin
+dependencies {
+    implementation("com.github.Neiy0:Resonance:v1.0.0")
+}
+```
+
+### Gradle (Groovy)
+
+```gradle
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Neiy0:Resonance:v1.0.0'
+}
+```
+
+### Maven
+
+Add JitPack repository:
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+Add the dependency:
+```xml
+<dependency>
+    <groupId>com.github.Neiy0</groupId>
+    <artifactId>Resonance</artifactId>
+    <version>v1.0.0</version>
+</dependency>
+```
+
 ## Quick Start
 
-### 1. Get the Manager
+### 1. Initialize the library
+
+```java
+import fr.neiyo.resonance.Resonance;
+
+public class MyPlugin extends JavaPlugin {
+    @Override
+    public void onEnable() {
+        Resonance.initialize();
+    }
+}
+```
+
+### 2. Get the Manager
 
 ```java
 IResonanceManager manager = ResonanceProvider.get();
 ```
 
-### 2. Create Global Audio (same volume for all players)
+### 3. Create Global Audio (same volume for all players)
 
 ```java
 IAudioSession session = manager.create(
@@ -34,7 +98,7 @@ IAudioSession session = manager.create(
 session.addAudience(player);
 ```
 
-### 3. Create Spatial Audio (positioned with distance attenuation)
+### 4. Create Spatial Audio (positioned with distance attenuation)
 
 ```java
 Transform soundPos = new Transform(new Vector3d(100, 64, 200), ...);
@@ -51,7 +115,7 @@ IAudioSession spatialAudio = manager.create(
 // Players near the position automatically hear it attenuated by distance
 ```
 
-### 4. Control Playback
+### 5. Control Playback
 
 ```java
 session.setVolume(0.5f);           // Adjust volume
