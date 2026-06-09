@@ -99,6 +99,12 @@ For **spatial audio**, the system additionally:
 
 ---
 
+## Demo
+
+[![Resonance – Demo](assets/demo.png)](https://youtu.be/HUVEapgvgFU)
+
+---
+
 ## License
 
 This project is licensed under the terms specified in the repository.
